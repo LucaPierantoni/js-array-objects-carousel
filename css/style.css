@@ -1,22 +1,104 @@
-/*
-Consegna:
-Dato un array di oggetti letterali con:
- - url dell’immagine
- - titolo
- - descrizione
-Creare un carosello come nella foto allegata.
-Milestone 0:
-Come nel primo carosello realizzato, focalizziamoci prima sulla creazione del markup statico: costruiamo il container e inseriamo l'immagine grande in modo da poter stilare lo slider.
-Milestone 1:
-Ora rimuoviamo i contenuti statici e usiamo l’array di oggetti letterali per popolare dinamicamente il carosello.
-Al click dell'utente sulle frecce verso sinistra o destra, la nuova immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo.
-Milestone 2:
-Aggiungere il ciclo infinito del carosello. Ovvero se la miniatura attiva è la prima e l'utente clicca la freccia verso destra, la miniatura che deve attivarsi sarà l'ultima e viceversa per l'ultima miniatura se l'utente clicca la freccia verso sinistra.
-BONUS 1:
-Aggiungere le thumbnails (sottoforma di miniatura) ed al click attivare l’immagine corrispondente.
-BONUS 2:
-Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi) l’immagine attiva dovrà cambiare alla successiva in automatico.
-BONUS 3:
-Aggiungere bottoni di start / stop e di inversione del meccanismo di autoplay.
-*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+.container {
+    width: 900px;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.items {
+    position: relative;
+    width: 700px;
+    height: 300px;
+}
+
+.item {
+    height: 100%;
+    display: none;
+    position: relative;
+}
+
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item.active {
+    display: block;
+}
+
+.prev, .next {
+    width: 20px;
+    height: 20px;
+    margin: 10px 0;
+    border-radius: 50%;
+    background: #ccc;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    cursor: pointer;
+    z-index: 999;
+}
+
+.prev{
+    top: 0;
+}
+
+.next {
+    bottom: 0;
+}
+
+.prev::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    display: block;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%) rotate(-45deg);
+}
+
+.next::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    display: block;
+    position: absolute;
+    bottom: 35%;
+    left: 50%;
+    transform: translate(-50%) rotate(135deg);
+}
+
+.position-absolute{
+    position: absolute;
+}
+
+.bottom-50{
+    bottom: 50px;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.color-white{
+    color: #fff;
+}
+
+.padding-text{
+    padding: 0px 50px 0px 30px
+}
